@@ -1,0 +1,39 @@
+<% if @product.errors.any? %>
+  <div>
+    <% @product.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: @product do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+  <%= form.label :image %><br>
+  <%= form.file_field :image %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+    <%= form.rich_text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :price %><br>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.label :category %><br>
+    <%= form.select :category, ["Books", "Clothing", "Tech"] %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
