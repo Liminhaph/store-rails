@@ -5,7 +5,10 @@
 <ul>
   <% @products.each do |product| %>
     <li>
-      <%= link_to product.name, product %>
+      <%= link_to product.name, product %> |
+      <%= link_to "Excluir", product,
+          data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
     </li>
   <% end %>
 </ul>
+
