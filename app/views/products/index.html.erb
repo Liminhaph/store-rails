@@ -10,11 +10,14 @@
       R$ <%= product.price %>
       |
       <%= link_to "Ver", product %>
+      |
       <%= link_to "Editar", edit_product_path(product) %>
-      <%= link_to "Excluir", product,
-          method: :delete,
-          data: { confirm: "Tem certeza?" } %>
+      |
+      <%= button_to "Excluir",
+            product,
+            method: :delete,
+            data: { turbo_confirm: "Tem certeza que deseja excluir este produto?" },
+            form: { style: "display:inline" } %>
     </li>
   <% end %>
 </ul>
-DEPRECATION WARNING: resource received a hash argument
