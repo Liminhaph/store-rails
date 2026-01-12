@@ -1,40 +1,33 @@
 <% if @product.errors.any? %>
   <div>
-    <% @product.errors.full_messages.each do |message| %>
-      <p><%= message %></p>
+    <% @product.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
     <% end %>
   </div>
 <% end %>
 
 <%= form_with model: @product do |form| %>
   <div>
-    <%= form.label :name %><br>
+    <%= form.label :name, "Nome do gelo" %><br>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :image %><br>
-    <%= form.file_field :image %>
+    <%= form.label :ice_type %><br>
+    <%= form.select :ice_type, Product.ice_types.keys %>
   </div>
 
   <div>
-    <%= form.label :description %><br>
+    <%= form.label :description, "Descrição" %><br>
     <%= form.rich_text_area :description %>
   </div>
 
   <div>
-    <%= form.label :price %><br>
+    <%= form.label :price, "Preço (R$)" %><br>
     <%= form.text_field :price %>
   </div>
 
   <div>
-    <%= form.label :category %><br>
-    <%= form.select :category, ["Books", "Clothing", "Tech"] %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Salvar gelo" %>
   </div>
 <% end %>
-
-

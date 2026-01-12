@@ -1,14 +1,20 @@
-<h1>Products</h1>
+<h1>Loja de Gelo</h1>
 
-<%= link_to "New Product", new_product_path %>
+<%= link_to "Novo gelo", new_product_path %>
 
 <ul>
   <% @products.each do |product| %>
     <li>
-      <%= link_to product.name, product %> |
+      <strong><%= product.name %></strong> —
+      <%= product.ice_type.capitalize %> —
+      R$ <%= product.price %>
+      |
+      <%= link_to "Ver", product %>
+      <%= link_to "Editar", edit_product_path(product) %>
       <%= link_to "Excluir", product,
-          data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
+          method: :delete,
+          data: { confirm: "Tem certeza?" } %>
     </li>
   <% end %>
 </ul>
-
+DEPRECATION WARNING: resource received a hash argument
