@@ -14,5 +14,11 @@
     <%= form.number_field :price %>
   </p>
 
+  <div class="field">
+  <%= form.label :in_stock, "Produto em estoque?" %>
+  <%= form.check_box :in_stock %>
+</div>
+
+
   <%= form.submit %>
 <% end %>

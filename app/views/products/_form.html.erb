@@ -30,4 +30,16 @@
   <div>
     <%= form.submit "Salvar gelo" %>
   </div>
+
+  <div>
+  <%= form.label :in_stock, "Em estoque?" %>
+  <%= form.check_box :in_stock %>
+  </div>
+
+  <div class="field">
+  <%= form.label :in_stock, "Produto em estoque?" %>
+  <%= form.check_box :in_stock %>
+</div>
+
+
 <% end %>

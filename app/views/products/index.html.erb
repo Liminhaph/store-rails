@@ -1,23 +1,42 @@
-<h1>Loja de Gelo</h1>
+<h1 class="title">Loja de Gelo</h1>
 
-<%= link_to "Novo gelo", new_product_path %>
+<div class="actions">
+  <% if current_user.admin? %>
+    <%= link_to "Novo gelo", new_product_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
 
-<ul>
+<ul class="products">
   <% @products.each do |product| %>
-    <li>
-      <strong><%= product.name %></strong> —
-      <%= product.ice_type.capitalize %> —
-      R$ <%= product.price %>
-      |
-      <%= link_to "Ver", product %>
-      |
-      <%= link_to "Editar", edit_product_path(product) %>
-      |
-      <%= button_to "Excluir",
-            product,
-            method: :delete,
-            data: { turbo_confirm: "Tem certeza que deseja excluir este produto?" },
-            form: { style: "display:inline" } %>
+    <li class="product-card">
+      <div class="product-info">
+        <h2><%= product.name %></h2>
+        <p class="type"><%= product.ice_type.capitalize %></p>
+        <p class="price">R$ <%= product.price %></p>
+
+        <% if product.in_stock %>
+          <p class="stock in-stock">Em estoque</p>
+        <% else %>
+          <p class="stock out-of-stock">Fora de estoque</p>
+        <% end %>
+      </div>
+
+      <div class="product-actions">
+        <%= link_to "Ver", product, class: "btn btn-secondary" %>
+
+        <% if current_user.admin? %>
+          <%= link_to "Editar", edit_product_path(product), class: "btn btn-secondary" %>
+
+          <%= button_to "Excluir",
+                product,
+                method: :delete,
+                data: { turbo_confirm: "Tem certeza?" },
+                class: "btn btn-danger",
+                form: { class: "inline-form" } %>
+        <% end %>
+      </div>
     </li>
   <% end %>
 </ul>
+
+
